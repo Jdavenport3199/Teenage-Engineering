@@ -141,7 +141,7 @@ export default function Home() {
             stereo throughout the whole signal chain, bluetooth midi, usb
             type-c, a new speaker system with a passive driver for detailed, fat
             and loud sound, a massive 24 hour battery life, multiple tapes and
-            recording formats, new great sounding reverb and the 'dimension'
+            recording formats, new great sounding reverb and the &apos;dimension&apos;
             synth engine, an all glass, flush, high resolution display. we also
             meticulously reworked all graphics, screen by screen. did we mention
             fm broadcasting?
@@ -159,7 +159,7 @@ export default function Home() {
             updated with the latest technology, improved design and finely tuned
             with professional musicians, recording artists and sound designers
             in mind. higher quality in all aspects, from its circuitry to
-            connectivity and flexibility, it's tailor made for professionals in
+            connectivity and flexibility, it&apos;s tailor made for professionals in
             the field.
           </span>
         </div>
