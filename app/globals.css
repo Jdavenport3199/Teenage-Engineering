@@ -20,7 +20,7 @@
     box-sizing: border-box;
     z-index: 2;
     font-family: 'Switzer', sans-serif;
-    color: black;
+    color: white;
   }
 
   .background-holder {
@@ -45,7 +45,7 @@
   h2 {
     font-weight: 400;
     line-height: 1;
-    font-size: clamp(24px, 10vw, 64px);
+    font-size: clamp(24px, 10vw, 80px);
   }
 
   p,
@@ -62,7 +62,7 @@
   span {
     font-weight: 200;
     font-size: clamp(20px, 2vw, 24px);
-    line-height: 1.4;
+    line-height: 1.6;
   }
 
   a,
@@ -90,14 +90,14 @@
     justify-content: center;
     align-items: center;
     z-index: 3;
-    background: #000000;
+    background: linear-gradient(to top, #070707, #202020);
 
     span {
-      color: whitesmoke;
+      color: white;
     }
 
     a {
-      color: whitesmoke;
+      color: white;
     }
   }
 
@@ -121,21 +121,21 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #000000;
+    background: #070707;
 
     p {
-      color: whitesmoke;
+      color: white;
     }
 
     a {
-      color: whitesmoke;
+      color: white;
     }
   }
 
   .cart-btn {
     padding: 2rem;
-    background: whitesmoke;
-    color: black;
+    background: white;
+    color: #070707;
     font-weight: 400;
     font-size: clamp(24px, 2vw, 28px);
     width: 400px;
@@ -145,6 +145,7 @@
   .splash {
     width: 100%;
     height: 100%;
+    max-height: 100vh;
     object-fit: cover;
     object-position: center center;
     z-index: 1;
@@ -152,25 +153,22 @@
 
   .splash-id-holder {
     z-index: 2;
-    position: fixed;
-    right: 4rem;
-    height: 94vh;
     display: flex;
     align-items: center;
+    position: absolute;
+    bottom: 4rem;
   }
 
   .splash-id-container {
     display: flex;
-    flex-direction: column;
     gap: 1.2rem;
-    position: absolute;
   }
 
   .splash-id {
     cursor: pointer;
     width: 0.8rem;
     height: 0.8rem;
-    background: #000000;
+    background: #070707;
     border-radius: 100rem;
     opacity: 0.4;
     transition: 150ms linear;
@@ -189,15 +187,15 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: none;
   }
 
   .container {
     width: 70%;
-    text-align: center;
   }
 
   #fade {
-    scale: .85;
+    scale: .9;
     opacity: 0;
     animation: fadeIn linear forwards;
     animation-timeline: view();
@@ -206,32 +204,22 @@
 
   @keyframes fadeIn {
     0% {
-      scale: .85;
+      scale: .9;
       opacity: 0;
     }
-
-    /* 5% {
-      scale: .85;
-      opacity: 0;
-    } */
 
     25% {
       scale: 1;
       opacity: 1;
     }
 
-    45% {
+    75% {
       scale: 1;
       opacity: 1;
     }
 
-    55% {
-      scale: .85;
-      opacity: 0;
-    }
-
     100% {
-      scale: .85;
+      scale: .9;
       opacity: 0;
     }
   }

@@ -4,9 +4,32 @@ import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useInView } from "react-intersection-observer";
 
 export default function Home() {
   gsap.registerPlugin(ScrollTrigger);
+
+  const ref1 = useRef(null);
+  const [inViewRef1, setInViewRef1] = useInView({
+    triggerOnce: false,
+    threshold: 0.8,
+  });
+  useGSAP(() => {
+    if (setInViewRef1) {
+      tl.to(ref1.current, { opacity: 1, duration: 2 });
+    }
+  }, [setInViewRef1]);
+
+  const ref2 = useRef(null);
+  const [inViewRef2, setInViewRef2] = useInView({
+    triggerOnce: false,
+    threshold: 0.8,
+  });
+  useGSAP(() => {
+    if (setInViewRef2) {
+      tl.to(ref2.current, { opacity: 1, duration: 2 });
+    }
+  }, [setInViewRef2]);
 
   const images = [
     { src: "1.png" },
@@ -35,9 +58,9 @@ export default function Home() {
     (tl.current as any) = gsap.timeline({
       ease: "back.inOut",
       scrollTrigger: {
-        // trigger: ".main",
+        // trigger: ".trigger",
         start: "top top",
-        end: "+=100%",
+        end: "+=300%",
         scrub: true,
         pin: true,
       },
@@ -46,14 +69,16 @@ export default function Home() {
     (tl.current as any).fromTo(
       model.current as any,
       { opacity: 1, y: 0, scale: 1 },
-      { opacity: 0.8, y: "-20vh", scale: 0.45 },
+      { opacity: 1, y: 0, scale: 0.5 },
       "start"
     );
+
+    (tl.current as any).to(model.current as any, { opacity: 0 }, "end");
   }, []);
 
   return (
     <main>
-      <nav>
+      {/* <nav>
         <div className="nav">
           <div className="nav-links" style={{ gap: "1rem" }}>
             <img src="logo.png" style={{ width: "auto", height: "40px" }} />
@@ -66,72 +91,23 @@ export default function Home() {
             <Link href="">support</Link>
           </div>
         </div>
-      </nav>
+      </nav> */}
+
       <div className="background-holder" ref={model}>
-        <img src={images[imageIndex].src} className="splash" />
+        <img src="1.png" className="splash" />
       </div>
-
-      <div className="splash-id-holder">
-        <div className="splash-id-container">
-          <div
-            className="splash-id"
-            onClick={() => {
-              setImageIndex(0);
-              setTimer(2500);
-            }}
-            style={{
-              opacity: imageIndex == 0 ? "1" : " ",
-              scale: imageIndex == 0 ? "1.6" : " ",
-            }}
-          ></div>
-          <div
-            className="splash-id"
-            onClick={() => {
-              setImageIndex(1);
-              setTimer(2500);
-            }}
-            style={{
-              opacity: imageIndex == 1 ? "1" : " ",
-              scale: imageIndex == 1 ? "1.6" : " ",
-            }}
-          ></div>
-          <div
-            className="splash-id"
-            onClick={() => {
-              setImageIndex(2);
-              setTimer(2500);
-            }}
-            style={{
-              opacity: imageIndex == 2 ? "1" : " ",
-              scale: imageIndex == 2 ? "1.6" : " ",
-            }}
-          ></div>
-          <div
-            className="splash-id"
-            onClick={() => {
-              setImageIndex(3);
-              setTimer(2500);
-            }}
-            style={{
-              opacity: imageIndex == 3 ? "1" : " ",
-              scale: imageIndex == 3 ? "1.6" : " ",
-            }}
-          ></div>
-          <div
-            className="splash-id"
-            onClick={() => setImageIndex(4)}
-            style={{
-              opacity: imageIndex == 4 ? "1" : " ",
-              scale: imageIndex == 4 ? "1.6" : " ",
-            }}
-          ></div>
-        </div>
-      </div>
-
       <div className="container-holder"></div>
 
       <div className="container-holder">
-        <div className="container" id="fade">
+        <div
+          className="container-holder"
+          style={{
+            background: "#070707",
+            position: "absolute",
+          }}
+          ref={inViewRef1}
+        ></div>
+        <div className="container" ref={ref1} style={{ opacity: 0 }}>
           <h2>the beauty of evolution.</h2>
           <br />
           <br />
@@ -141,16 +117,26 @@ export default function Home() {
             stereo throughout the whole signal chain, bluetooth midi, usb
             type-c, a new speaker system with a passive driver for detailed, fat
             and loud sound, a massive 24 hour battery life, multiple tapes and
-            recording formats, new great sounding reverb and the &apos;dimension&apos;
-            synth engine, an all glass, flush, high resolution display. we also
-            meticulously reworked all graphics, screen by screen. did we mention
-            fm broadcasting?
+            recording formats, new great sounding reverb and the
+            &apos;dimension&apos; synth engine, an all glass, flush, high
+            resolution display. we also meticulously reworked all graphics,
+            screen by screen. did we mention fm broadcasting?
           </span>
         </div>
       </div>
 
+      <div className="container-holder"></div>
+
       <div className="container-holder">
-        <div className="container" id="fade">
+        <div
+          className="container-holder"
+          style={{
+            background: "#070707",
+            position: "absolute",
+          }}
+          ref={inViewRef2}
+        ></div>
+        <div className="container" ref={ref2} style={{ opacity: 0 }}>
           <h2>louder, thinner and 100 times better.</h2>
           <br />
           <br />
@@ -159,18 +145,78 @@ export default function Home() {
             updated with the latest technology, improved design and finely tuned
             with professional musicians, recording artists and sound designers
             in mind. higher quality in all aspects, from its circuitry to
-            connectivity and flexibility, it&apos;s tailor made for professionals in
-            the field.
+            connectivity and flexibility, it&apos;s tailor made for
+            professionals in the field.
           </span>
         </div>
       </div>
 
-      <div className="container-holder" style={{ paddingTop: "28rem" }}>
-        <div
-          className="container"
-          id="fade"
-          // style={{ textAlign: "left" }}
-        >
+      <div className="container-holder" style={{ flexDirection: "column" }}>
+        <img
+          src={images[imageIndex].src}
+          className="splash"
+          style={{ width: "60%" }}
+        />
+        <div className="splash-id-holder">
+          <div className="splash-id-container">
+            <div
+              className="splash-id"
+              onClick={() => {
+                setImageIndex(0);
+                setTimer(2500);
+              }}
+              style={{
+                opacity: imageIndex == 0 ? "1" : " ",
+                scale: imageIndex == 0 ? "1.6" : " ",
+              }}
+            ></div>
+            <div
+              className="splash-id"
+              onClick={() => {
+                setImageIndex(1);
+                setTimer(2500);
+              }}
+              style={{
+                opacity: imageIndex == 1 ? "1" : " ",
+                scale: imageIndex == 1 ? "1.6" : " ",
+              }}
+            ></div>
+            <div
+              className="splash-id"
+              onClick={() => {
+                setImageIndex(2);
+                setTimer(2500);
+              }}
+              style={{
+                opacity: imageIndex == 2 ? "1" : " ",
+                scale: imageIndex == 2 ? "1.6" : " ",
+              }}
+            ></div>
+            <div
+              className="splash-id"
+              onClick={() => {
+                setImageIndex(3);
+                setTimer(2500);
+              }}
+              style={{
+                opacity: imageIndex == 3 ? "1" : " ",
+                scale: imageIndex == 3 ? "1.6" : " ",
+              }}
+            ></div>
+            <div
+              className="splash-id"
+              onClick={() => setImageIndex(4)}
+              style={{
+                opacity: imageIndex == 4 ? "1" : " ",
+                scale: imageIndex == 4 ? "1.6" : " ",
+              }}
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      {/* <div className="container-holder" style={{ background: "#070707" }}>
+        <div className="container" style={{ textAlign: "center" }}>
           <div
             style={{
               display: "flex",
@@ -180,7 +226,7 @@ export default function Home() {
             }}
           >
             <h1>OP–1</h1>
-            {/* <p>$1999 ships from the U.S.</p> */}
+            <p>$1999 ships from the U.S.</p>
           </div>
           <br />
           <Link href="">
@@ -188,7 +234,7 @@ export default function Home() {
               available now. visit store
             </span>
           </Link>
-          {/* <span>
+          <span>
             OP–1 field is our all-in-one battery-powered synthesizer, sampler
             and drum machine. OP–1 field is packed with features including: a
             built-in speaker, microphone, multiple effects, vocoder, fm radio,
@@ -210,11 +256,11 @@ export default function Home() {
 
           <div style={{ textAlign: "right" }}>
             <button className="cart-btn">add to cart</button>
-          </div> */}
+          </div>
         </div>
-      </div>
+      </div> */}
 
-      <footer>
+      {/* <footer>
         <div className="nav">
           <p>©2024 teenage engineering</p>
           <div className="nav-links">
@@ -226,7 +272,7 @@ export default function Home() {
             <Link href="">contact</Link>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </main>
   );
 }
