@@ -25,7 +25,7 @@
 
   .background-holder {
     position: fixed;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     z-index: 1;
   }
@@ -50,8 +50,8 @@
 
   p,
   li {
-    font-size: clamp(14px, 2vw, 20px);
-    font-weight: 300;
+    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 200;
     line-height: 1.4;
   }
 
@@ -60,8 +60,8 @@
   }
 
   span {
-    font-weight: 200;
-    font-size: clamp(20px, 2vw, 24px);
+    font-weight: 300;
+    font-size: clamp(14px, 2vw, 20px);
     line-height: 1.6;
   }
 
@@ -145,7 +145,7 @@
   .splash {
     width: 100%;
     height: 100%;
-    max-height: 100vh;
+    /* max-height: 100vh; */
     object-fit: cover;
     object-position: center center;
     z-index: 1;
@@ -156,7 +156,7 @@
     display: flex;
     align-items: center;
     position: absolute;
-    bottom: 4rem;
+    bottom: 26rem;
   }
 
   .splash-id-container {
@@ -179,6 +179,16 @@
     scale: 1.8;
     opacity: 1;
     transition: 150ms linear;
+  }
+
+  .test-id {
+    width: 0.4rem;
+    height: 0.4rem;
+    background: #070707;
+    border-radius: 100rem;
+    opacity: 0.4;
+    transition: 150ms linear;
+    position: relative;
   }
 
   .container-holder {

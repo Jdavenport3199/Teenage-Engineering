@@ -12,22 +12,24 @@ export default function Home() {
   const ref1 = useRef(null);
   const [inViewRef1, setInViewRef1] = useInView({
     triggerOnce: false,
-    threshold: 0.8,
+    initialInView: false,
+    threshold: 0.4,
   });
   useGSAP(() => {
     if (setInViewRef1) {
-      tl.to(ref1.current, { opacity: 1, duration: 2 });
+      tl.to(ref1.current, { opacity: 1, duration: 2.5 });
     }
   }, [setInViewRef1]);
 
   const ref2 = useRef(null);
   const [inViewRef2, setInViewRef2] = useInView({
     triggerOnce: false,
-    threshold: 0.8,
+    initialInView: false,
+    threshold: 0.4,
   });
   useGSAP(() => {
     if (setInViewRef2) {
-      tl.to(ref2.current, { opacity: 1, duration: 2 });
+      tl.to(ref2.current, { opacity: 1, duration: 2.5 });
     }
   }, [setInViewRef2]);
 
@@ -60,7 +62,7 @@ export default function Home() {
       scrollTrigger: {
         // trigger: ".trigger",
         start: "top top",
-        end: "+=300%",
+        // end: "+=700%",
         scrub: true,
         pin: true,
       },
@@ -68,21 +70,54 @@ export default function Home() {
 
     (tl.current as any).fromTo(
       model.current as any,
-      { opacity: 1, y: 0, scale: 1 },
-      { opacity: 1, y: 0, scale: 0.5 },
+      { opacity: 1, y: 0, scale: 1, rotation: 0 },
+      { opacity: 1, y: "-27.5%", scale: 0.65, rotation: -90 },
       "start"
     );
 
-    (tl.current as any).to(model.current as any, { opacity: 0 }, "end");
+    (tl.current as any).to(model.current as any, { opacity: 0 }, "+=400%");
+  }, []);
+
+  const tl2 = gsap.timeline({ delay: 0 });
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+
+  useGSAP(() => {
+    (tl2.current as any) = gsap.timeline({
+      ease: "back.inOut",
+      scrollTrigger: {
+        trigger: "#test",
+        start: "top top",
+        // end: "+=100%",
+        scrub: true,
+        pin: true,
+      },
+    });
+
+    (tl2.current as any).fromTo(
+      ref3.current as any,
+      { opacity: 0 },
+      { opacity: 1 },
+      "start"
+    );
+    (tl2.current as any).to(ref3.current as any, { opacity: 0 }, "+=200%");
+
+    (tl2.current as any).fromTo(
+      ref4.current as any,
+      { opacity: 0 },
+      { opacity: 1 },
+      "start"
+    );
+    (tl2.current as any).to(ref4.current as any, { opacity: 0 }, "+=200%");
   }, []);
 
   return (
     <main>
-      {/* <nav>
+      <nav>
         <div className="nav">
           <div className="nav-links" style={{ gap: "1rem" }}>
             <img src="logo.png" style={{ width: "auto", height: "40px" }} />
-            <span style={{ fontWeight: "300" }}>teenage engineering</span>
+            <span>teenage engineering</span>
           </div>
           <div className="nav-links">
             <Link href="">products</Link>
@@ -91,14 +126,26 @@ export default function Home() {
             <Link href="">support</Link>
           </div>
         </div>
-      </nav> */}
+      </nav>
 
-      <div className="background-holder" ref={model}>
-        <img src="1.png" className="splash" />
+      <div
+        className="background-holder"
+        ref={model}
+        style={{ display: "flex", justifyContent: "center" }}
+      >
+        <img src="test.png" />
       </div>
       <div className="container-holder"></div>
-
       <div className="container-holder">
+        <div
+          className="container-holder"
+          style={{
+            background: "linear-gradient(to top, #070707, transparent)",
+          }}
+        ></div>
+      </div>
+
+      <div className="container-holder" style={{ alignItems: "flex-start" }}>
         <div
           className="container-holder"
           style={{
@@ -107,11 +154,15 @@ export default function Home() {
           }}
           ref={inViewRef1}
         ></div>
-        <div className="container" ref={ref1} style={{ opacity: 0 }}>
+        <div
+          className="container"
+          ref={ref1}
+          style={{ opacity: 0, marginTop: "8rem" }}
+        >
           <h2>the beauty of evolution.</h2>
           <br />
           <br />
-          <span>
+          <p>
             introducing the all new OP–1 field. injected with more than a decade
             of ideas, refinements and improvements. just to mention a few:
             stereo throughout the whole signal chain, bluetooth midi, usb
@@ -121,13 +172,65 @@ export default function Home() {
             &apos;dimension&apos; synth engine, an all glass, flush, high
             resolution display. we also meticulously reworked all graphics,
             screen by screen. did we mention fm broadcasting?
+          </p>
+        </div>
+      </div>
+
+      <div
+        className="background-holder"
+        id="test"
+        style={{ position: "relative" }}
+      >
+        <div
+          ref={ref3}
+          style={{
+            position: "absolute",
+            top: "20%",
+            left: "25%",
+            opacity: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "0.4rem",
+          }}
+        >
+          <div className="test-id"></div>
+          <span style={{ color: "#070707" }}>
+            hardened glass high resolution flush display with adjustable
+            brightness.
+          </span>
+        </div>
+        <div
+          ref={ref4}
+          style={{
+            position: "absolute",
+            bottom: "20%",
+            left: "25%",
+            opacity: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "0.4rem",
+          }}
+        >
+          <div className="test-id"></div>
+          <span style={{ color: "#070707" }}>
+            one of the 2.4 ghz antennas is the tiny white line between the d and
+            the e key.
           </span>
         </div>
       </div>
 
-      <div className="container-holder"></div>
-
       <div className="container-holder">
+        <div
+          className="container-holder"
+          style={{
+            background: "linear-gradient(to top, #070707, transparent)",
+          }}
+        ></div>
+      </div>
+
+      <div className="container-holder" style={{ alignItems: "flex-start" }}>
         <div
           className="container-holder"
           style={{
@@ -136,18 +239,22 @@ export default function Home() {
           }}
           ref={inViewRef2}
         ></div>
-        <div className="container" ref={ref2} style={{ opacity: 0 }}>
+        <div
+          className="container"
+          ref={ref2}
+          style={{ opacity: 0, marginTop: "8rem" }}
+        >
           <h2>louder, thinner and 100 times better.</h2>
           <br />
           <br />
-          <span>
+          <p>
             think of OP–1 field as the natural continuation of its predecessor.
             updated with the latest technology, improved design and finely tuned
             with professional musicians, recording artists and sound designers
             in mind. higher quality in all aspects, from its circuitry to
             connectivity and flexibility, it&apos;s tailor made for
             professionals in the field.
-          </span>
+          </p>
         </div>
       </div>
 
@@ -213,56 +320,22 @@ export default function Home() {
             ></div>
           </div>
         </div>
-      </div>
-
-      {/* <div className="container-holder" style={{ background: "#070707" }}>
-        <div className="container" style={{ textAlign: "center" }}>
-          <div
-            style={{
-              display: "flex",
-              alignItems: "baseline",
-              gap: "2rem",
-              justifyContent: "center",
-            }}
-          >
-            <h1>OP–1</h1>
-            <p>$1999 ships from the U.S.</p>
-          </div>
+        <div style={{ textAlign: "center" }}>
+          <h2 style={{ color: "#070707" }}>OP–1</h2>
+          <span style={{ color: "#070707" }}>$1999 ships from the U.S.</span>
+          <br />
           <br />
           <Link href="">
             <span style={{ fontWeight: "400", color: "rgb(0, 113, 187)" }}>
               available now. visit store
             </span>
           </Link>
-          <span>
-            OP–1 field is our all-in-one battery-powered synthesizer, sampler
-            and drum machine. OP–1 field is packed with features including: a
-            built-in speaker, microphone, multiple effects, vocoder, fm radio,
-            bluetooth midi, even a velocity sensitive keyboard. it's the most
-            powerful portable synthesizer available.
-          </span>
-          <br />
-          <br />
-          <ul>
-            <li>12 synth engines</li>
-            <li>sampler, drum machine and sequencer</li>
-            <li>tape recorder</li>
-            <li>built in effects</li>
-            <li>ultra-portable</li>
-            <li>dimensions: 28.8 cm x 10.2 cm x 2.9 cm</li>
-            <li>weight: 589 g / 20.8 oz</li>
-          </ul>
-          <br />
-
-          <div style={{ textAlign: "right" }}>
-            <button className="cart-btn">add to cart</button>
-          </div>
         </div>
-      </div> */}
+      </div>
 
-      {/* <footer>
+      <footer>
         <div className="nav">
-          <p>©2024 teenage engineering</p>
+          <span>©2024 teenage engineering</span>
           <div className="nav-links">
             <Link href="">newsletter</Link>
             <Link href="">stores</Link>
@@ -272,7 +345,7 @@ export default function Home() {
             <Link href="">contact</Link>
           </div>
         </div>
-      </footer> */}
+      </footer>
     </main>
   );
 }
