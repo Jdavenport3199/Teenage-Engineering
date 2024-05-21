@@ -17,7 +17,7 @@ export default function Home() {
   });
   useGSAP(() => {
     if (setInViewRef1) {
-      tl.to(ref1.current, { opacity: 1, duration: 2.5 });
+      tl.to(ref1.current, { opacity: 1, duration: 1.5 });
     }
   }, [setInViewRef1]);
 
@@ -29,7 +29,7 @@ export default function Home() {
   });
   useGSAP(() => {
     if (setInViewRef2) {
-      tl.to(ref2.current, { opacity: 1, duration: 2.5 });
+      tl.to(ref2.current, { opacity: 1, duration: 1.5 });
     }
   }, [setInViewRef2]);
 
@@ -81,6 +81,7 @@ export default function Home() {
   const tl2 = gsap.timeline({ delay: 0 });
   const ref3 = useRef(null);
   const ref4 = useRef(null);
+  const ref5 = useRef(null);
 
   useGSAP(() => {
     (tl2.current as any) = gsap.timeline({
@@ -106,9 +107,17 @@ export default function Home() {
       ref4.current as any,
       { opacity: 0 },
       { opacity: 1 },
-      "start"
+      "+=200%"
     );
     (tl2.current as any).to(ref4.current as any, { opacity: 0 }, "+=200%");
+
+    (tl2.current as any).fromTo(
+      ref5.current as any,
+      { opacity: 0 },
+      { opacity: 1 },
+      "+=400%"
+    );
+    (tl2.current as any).to(ref5.current as any, { opacity: 0 }, "+=200%");
   }, []);
 
   return (
@@ -116,10 +125,10 @@ export default function Home() {
       <nav>
         <div className="nav">
           <div className="nav-links" style={{ gap: "1rem" }}>
-            <img src="logo.png" style={{ width: "auto", height: "40px" }} />
+            <img src="logo2.png" style={{ width: "auto", height: "60px" }} />
             <span>teenage engineering</span>
           </div>
-          <div className="nav-links">
+          <div className="nav-links" id="links">
             <Link href="">products</Link>
             <Link href="">store</Link>
             <Link href="">now</Link>
@@ -131,16 +140,32 @@ export default function Home() {
       <div
         className="background-holder"
         ref={model}
-        style={{ display: "flex", justifyContent: "center" }}
+        style={{ display: "flex", justifyContent: "center", zIndex: "2" }}
       >
-        <img src="test.png" />
+        <img src="test.png" style={{ maxWidth: "100%" }} />
       </div>
-      <div className="container-holder"></div>
+      <div
+        className="container-holder"
+        style={{ zIndex: "0", alignItems: "flex-end" }}
+      >
+        <div
+          className="container"
+          style={{
+            textAlign: "center",
+            zIndex: "1",
+            width: "100%",
+            marginBottom: "4rem",
+          }}
+        >
+          <h1>OP-1 field.</h1>
+        </div>
+      </div>
       <div className="container-holder">
         <div
           className="container-holder"
           style={{
-            background: "linear-gradient(to top, #070707, transparent)",
+            background:
+              "linear-gradient(to top, rgb(240 240 239), transparent)",
           }}
         ></div>
       </div>
@@ -149,7 +174,7 @@ export default function Home() {
         <div
           className="container-holder"
           style={{
-            background: "#070707",
+            background: "rgb(240 240 239)",
             position: "absolute",
           }}
           ref={inViewRef1}
@@ -157,7 +182,7 @@ export default function Home() {
         <div
           className="container"
           ref={ref1}
-          style={{ opacity: 0, marginTop: "8rem" }}
+          style={{ opacity: 0, marginTop: "8rem", textAlign: "center" }}
         >
           <h2>the beauty of evolution.</h2>
           <br />
@@ -186,7 +211,7 @@ export default function Home() {
           style={{
             position: "absolute",
             top: "20%",
-            left: "25%",
+            left: "22%",
             opacity: 0,
             display: "flex",
             justifyContent: "center",
@@ -205,7 +230,26 @@ export default function Home() {
           style={{
             position: "absolute",
             bottom: "20%",
-            left: "25%",
+            left: "50%",
+            opacity: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "0.4rem",
+          }}
+        >
+          <div className="test-id"></div>
+          <span style={{ color: "#070707" }}>
+            one of the 2.4 ghz antennas is the tiny white line between the d and
+            the e key.
+          </span>
+        </div>
+        <div
+          ref={ref5}
+          style={{
+            position: "absolute",
+            bottom: "20%",
+            left: "22%",
             opacity: 0,
             display: "flex",
             justifyContent: "center",
@@ -225,7 +269,8 @@ export default function Home() {
         <div
           className="container-holder"
           style={{
-            background: "linear-gradient(to top, #070707, transparent)",
+            background:
+              "linear-gradient(to top, rgb(240 240 239), transparent)",
           }}
         ></div>
       </div>
@@ -234,7 +279,7 @@ export default function Home() {
         <div
           className="container-holder"
           style={{
-            background: "#070707",
+            background: "rgb(240 240 239)",
             position: "absolute",
           }}
           ref={inViewRef2}
@@ -242,7 +287,7 @@ export default function Home() {
         <div
           className="container"
           ref={ref2}
-          style={{ opacity: 0, marginTop: "8rem" }}
+          style={{ opacity: 0, marginTop: "8rem", textAlign: "center" }}
         >
           <h2>louder, thinner and 100 times better.</h2>
           <br />
@@ -320,7 +365,7 @@ export default function Home() {
             ></div>
           </div>
         </div>
-        <div style={{ textAlign: "center" }}>
+        <div style={{ textAlign: "center", marginBottom: "6rem" }}>
           <h2 style={{ color: "#070707" }}>OP–1</h2>
           <span style={{ color: "#070707" }}>$1999 ships from the U.S.</span>
           <br />
@@ -333,7 +378,7 @@ export default function Home() {
         </div>
       </div>
 
-      <footer>
+      {/* <footer>
         <div className="nav">
           <span>©2024 teenage engineering</span>
           <div className="nav-links">
@@ -345,7 +390,7 @@ export default function Home() {
             <Link href="">contact</Link>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </main>
   );
 }
