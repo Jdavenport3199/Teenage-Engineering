@@ -57,14 +57,15 @@ export default function Home() {
   const footer = useRef(null);
 
   useEffect(() => {
-    const screen = window.innerWidth;
-    const yPosition = screen > 800 ? "-28%" : "-6.5%";
+    const screen = window.innerHeight;
+    const yPosition = screen > 800 ? "-29%" : "-10%";
     const scale = screen > 800 ? "0.65" : "0.5";
 
     (tl.current as any) = gsap.timeline({
       ease: "back.inOut",
       scrollTrigger: {
         start: "top top",
+        end: "+=650%",
         scrub: true,
         pin: true,
       },
@@ -92,7 +93,7 @@ export default function Home() {
       scrollTrigger: {
         trigger: "#test",
         start: "top top",
-        // end: "+=100%",
+        end: "+=200%",
         scrub: true,
         pin: true,
       },
@@ -101,31 +102,47 @@ export default function Home() {
     (tl2.current as any).fromTo(
       ref3.current as any,
       { opacity: 0 },
-      { opacity: 1, duration: 1 },
+      { opacity: 1, duration: 20 },
       "start"
     );
-    (tl2.current as any).to(ref3.current as any, { opacity: 0 }, "+=2000%");
+    (tl2.current as any).to(
+      ref3.current as any,
+      { opacity: 0, duration: 20 },
+      "+=20"
+    );
 
     (tl2.current as any).fromTo(
       ref4.current as any,
       { opacity: 0 },
-      { opacity: 1, duration: 1 }
+      { opacity: 1, duration: 20 }
     );
-    (tl2.current as any).to(ref4.current as any, { opacity: 0 }, "+=2000%");
+    (tl2.current as any).to(
+      ref4.current as any,
+      { opacity: 0, duration: 20 },
+      "+=20"
+    );
 
     (tl2.current as any).fromTo(
       ref5.current as any,
       { opacity: 0 },
-      { opacity: 1, duration: 1 }
+      { opacity: 1, duration: 20 }
     );
-    (tl2.current as any).to(ref5.current as any, { opacity: 0 }, "+=2000%");
+    (tl2.current as any).to(
+      ref5.current as any,
+      { opacity: 0, duration: 20 },
+      "+=20"
+    );
 
     (tl2.current as any).fromTo(
       ref6.current as any,
       { opacity: 0 },
-      { opacity: 1, duration: 1 }
+      { opacity: 1, duration: 20 }
     );
-    (tl2.current as any).to(ref6.current as any, { opacity: 0 }, "+=2000%");
+    (tl2.current as any).to(
+      ref6.current as any,
+      { opacity: 0, duration: 20 },
+      "+=20"
+    );
   }, []);
 
   return (
@@ -147,10 +164,14 @@ export default function Home() {
 
       <div
         className="background-holder"
-        ref={model}
-        style={{ display: "flex", justifyContent: "center", zIndex: "2" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          zIndex: "2",
+          marginTop: "2rem",
+        }}
       >
-        <img src="test.png" style={{ maxWidth: "100%", marginTop: "2rem" }} />
+        <img src="test.png" style={{ maxWidth: "100%" }} ref={model} />
       </div>
       <div
         className="container-holder"
@@ -182,7 +203,8 @@ export default function Home() {
         <div
           className="container-holder"
           style={{
-            background: "rgb(240 240 239)",
+            background:
+              "linear-gradient(to bottom, rgb(240 240 239) 75%, transparent 100%)",
             position: "absolute",
           }}
           ref={inViewRef1}
@@ -323,7 +345,8 @@ export default function Home() {
         <div
           className="container-holder"
           style={{
-            background: "rgb(240 240 239)",
+            background:
+              "linear-gradient(to bottom, rgb(240 240 239) 75%, transparent 100%)",
             position: "absolute",
           }}
           ref={inViewRef2}
