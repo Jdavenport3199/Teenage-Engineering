@@ -39,7 +39,7 @@
   h1 {
     font-weight: 200;
     line-height: 1;
-    font-size: clamp(100px, 24vw, 320px);
+    font-size: clamp(100px, 20vw, 320px);
   }
 
   h2 {
@@ -61,14 +61,14 @@
 
   span {
     font-weight: 300;
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(20px, 2vw, 24px);
     line-height: 1.6;
   }
 
   a,
   button {
     line-height: 1.4;
-    font-size: clamp(18px, 2vw, 24px);
+    font-size: clamp(20px, 2vw, 24px);
     font-weight: 300;
     text-decoration: none;
     width: fit-content;
@@ -146,7 +146,8 @@
     text-align: center;
   }
 
-  .splash {
+  .splash,
+  .splash-bottom {
     width: 100%;
     height: 100%;
     /* max-height: 100vh; */
@@ -155,12 +156,18 @@
     z-index: 1;
   }
 
+  .description {
+    text-align: center;
+    margin-top: 4rem;
+    margin-bottom: 0rem;
+  }
+
   .splash-id-holder {
     z-index: 2;
     display: flex;
     align-items: center;
     position: absolute;
-    bottom: 24rem;
+    bottom: 22rem;
   }
 
   .splash-id-container {
@@ -183,16 +190,6 @@
     scale: 2;
     opacity: 1;
     transition: 150ms linear;
-  }
-
-  .test-id {
-    width: 0.4rem;
-    aspect-ratio: 1;
-    background: #070707;
-    border-radius: 100rem;
-    opacity: 0.4;
-    transition: 150ms linear;
-    position: relative;
   }
 
   .container-holder {
@@ -224,5 +221,18 @@
 
   .container {
     width: 70%;
+  }
+
+  .splash-bottom {
+    width: 60%;
+  }
+
+  .splash-id-holder {
+    bottom: 24rem;
+  }
+
+  .description {
+    margin-top: 0rem;
+    margin-bottom: 6rem;
   }
 }

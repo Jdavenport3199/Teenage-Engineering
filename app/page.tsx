@@ -13,7 +13,7 @@ export default function Home() {
   const [inViewRef1, setInViewRef1] = useInView({
     triggerOnce: false,
     initialInView: false,
-    threshold: 0.4,
+    threshold: 0.45,
   });
   useGSAP(() => {
     if (setInViewRef1) {
@@ -25,7 +25,7 @@ export default function Home() {
   const [inViewRef2, setInViewRef2] = useInView({
     triggerOnce: false,
     initialInView: false,
-    threshold: 0.4,
+    threshold: 0.45,
   });
   useGSAP(() => {
     if (setInViewRef2) {
@@ -56,13 +56,15 @@ export default function Home() {
   const model = useRef(null);
   const footer = useRef(null);
 
-  useGSAP(() => {
+  useEffect(() => {
+    const screen = window.innerWidth;
+    const yPosition = screen > 800 ? "-28%" : "-6.5%";
+    const scale = screen > 800 ? "0.65" : "0.5";
+
     (tl.current as any) = gsap.timeline({
       ease: "back.inOut",
       scrollTrigger: {
-        // trigger: ".trigger",
         start: "top top",
-        // end: "+=700%",
         scrub: true,
         pin: true,
       },
@@ -71,7 +73,7 @@ export default function Home() {
     (tl.current as any).fromTo(
       model.current as any,
       { opacity: 1, y: 0, scale: 1, rotation: 0 },
-      { opacity: 1, y: "-27.5%", scale: 0.65, rotation: -90 },
+      { opacity: 1, y: yPosition, scale: scale, rotation: -90 },
       "start"
     );
 
@@ -82,6 +84,7 @@ export default function Home() {
   const ref3 = useRef(null);
   const ref4 = useRef(null);
   const ref5 = useRef(null);
+  const ref6 = useRef(null);
 
   useGSAP(() => {
     (tl2.current as any) = gsap.timeline({
@@ -98,26 +101,31 @@ export default function Home() {
     (tl2.current as any).fromTo(
       ref3.current as any,
       { opacity: 0 },
-      { opacity: 1 },
+      { opacity: 1, duration: 1 },
       "start"
     );
-    (tl2.current as any).to(ref3.current as any, { opacity: 0 }, "+=200%");
+    (tl2.current as any).to(ref3.current as any, { opacity: 0 }, "+=2000%");
 
     (tl2.current as any).fromTo(
       ref4.current as any,
       { opacity: 0 },
-      { opacity: 1 },
-      "+=200%"
+      { opacity: 1, duration: 1 }
     );
-    (tl2.current as any).to(ref4.current as any, { opacity: 0 }, "+=200%");
+    (tl2.current as any).to(ref4.current as any, { opacity: 0 }, "+=2000%");
 
     (tl2.current as any).fromTo(
       ref5.current as any,
       { opacity: 0 },
-      { opacity: 1 },
-      "+=400%"
+      { opacity: 1, duration: 1 }
     );
-    (tl2.current as any).to(ref5.current as any, { opacity: 0 }, "+=200%");
+    (tl2.current as any).to(ref5.current as any, { opacity: 0 }, "+=2000%");
+
+    (tl2.current as any).fromTo(
+      ref6.current as any,
+      { opacity: 0 },
+      { opacity: 1, duration: 1 }
+    );
+    (tl2.current as any).to(ref6.current as any, { opacity: 0 }, "+=2000%");
   }, []);
 
   return (
@@ -142,7 +150,7 @@ export default function Home() {
         ref={model}
         style={{ display: "flex", justifyContent: "center", zIndex: "2" }}
       >
-        <img src="test.png" style={{ maxWidth: "100%" }} />
+        <img src="test.png" style={{ maxWidth: "100%", marginTop: "2rem" }} />
       </div>
       <div
         className="container-holder"
@@ -210,8 +218,8 @@ export default function Home() {
           ref={ref3}
           style={{
             position: "absolute",
-            top: "20%",
-            left: "22%",
+            width: "100%",
+            top: "15%",
             opacity: 0,
             display: "flex",
             justifyContent: "center",
@@ -219,18 +227,23 @@ export default function Home() {
             gap: "0.4rem",
           }}
         >
-          <div className="test-id"></div>
-          <span style={{ color: "#070707" }}>
-            hardened glass high resolution flush display with adjustable
-            brightness.
+          <span
+            style={{
+              color: "#070707",
+              fontSize: "clamp(24px, 2vw, 28px)",
+              textAlign: "center",
+            }}
+          >
+            HARDENED GLASS HIGH RESOLUTION FLUSH DISPLAY WITH ADJUSTABLE
+            BRIGHTNESS.
           </span>
         </div>
         <div
           ref={ref4}
           style={{
             position: "absolute",
-            bottom: "20%",
-            left: "50%",
+            width: "100%",
+            bottom: "15%",
             opacity: 0,
             display: "flex",
             justifyContent: "center",
@@ -238,18 +251,22 @@ export default function Home() {
             gap: "0.4rem",
           }}
         >
-          <div className="test-id"></div>
-          <span style={{ color: "#070707" }}>
-            one of the 2.4 ghz antennas is the tiny white line between the d and
-            the e key.
+          <span
+            style={{
+              color: "#070707",
+              fontSize: "clamp(24px, 2vw, 28px)",
+              textAlign: "center",
+            }}
+          >
+            IMPROVED DRUM ENVELOPE FOR BETTER TRANSIENT CONTROL
           </span>
         </div>
         <div
           ref={ref5}
           style={{
             position: "absolute",
-            bottom: "20%",
-            left: "22%",
+            width: "100%",
+            top: "15%",
             opacity: 0,
             display: "flex",
             justifyContent: "center",
@@ -257,10 +274,37 @@ export default function Home() {
             gap: "0.4rem",
           }}
         >
-          <div className="test-id"></div>
-          <span style={{ color: "#070707" }}>
-            one of the 2.4 ghz antennas is the tiny white line between the d and
-            the e key.
+          <span
+            style={{
+              color: "#070707",
+              fontSize: "clamp(24px, 2vw, 28px)",
+              textAlign: "center",
+            }}
+          >
+            DUAL BLE ANTENNAS FOR STABLE WIRELESS PERFORMANCE
+          </span>
+        </div>
+        <div
+          ref={ref6}
+          style={{
+            position: "absolute",
+            width: "100%",
+            bottom: "15%",
+            opacity: 0,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            gap: "0.4rem",
+          }}
+        >
+          <span
+            style={{
+              color: "#070707",
+              fontSize: "clamp(24px, 2vw, 28px)",
+              textAlign: "center",
+            }}
+          >
+            IMPROVED EQUALIZER WITH HIGHER RESOLUTION AND SMOOTHER INTERPOLATION
           </span>
         </div>
       </div>
@@ -304,11 +348,7 @@ export default function Home() {
       </div>
 
       <div className="container-holder" style={{ flexDirection: "column" }}>
-        <img
-          src={images[imageIndex].src}
-          className="splash"
-          style={{ width: "60%" }}
-        />
+        <img src={images[imageIndex].src} className="splash-bottom" />
         <div className="splash-id-holder">
           <div className="splash-id-container">
             <div
@@ -365,7 +405,7 @@ export default function Home() {
             ></div>
           </div>
         </div>
-        <div style={{ textAlign: "center", marginBottom: "6rem" }}>
+        <div className="description">
           <h2 style={{ color: "#070707" }}>OP–1</h2>
           <span style={{ color: "#070707" }}>$1999 ships from the U.S.</span>
           <br />
