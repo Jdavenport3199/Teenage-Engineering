@@ -7,6 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "OP-1 — teenage engineering",
   description: "",
+  metadataBase: new URL("https://teenage-engineering.vercel.app/"),
 };
 
 export default function RootLayout({
