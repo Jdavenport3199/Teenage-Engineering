@@ -155,13 +155,13 @@ export default function Home() {
               </p>
               <p style={{ flex: "1 1 45%" }}>
                 we also meticulously reworked all graphics, screen by screen.
-                did we mention fm broadcasting? we didn't want to alter the
+                did we mention fm broadcasting? we didn&apos;t want to alter the
                 original OP–1 too much, because we think we got it more or less
                 right the first time; but by lowering the aluminum body around
                 the keyboard, the new OP–1 field feels lighter, thinner and more
                 precise. with 2k molding we also managed to fit a dual 2.4 GHz
-                antenna system inside the aluminum body. well, that's just some
-                of the 100 new features:
+                antenna system inside the aluminum body. well, that&apos;s just
+                some of the 100 new features:
               </p>
             </div>
             <div
@@ -384,7 +384,7 @@ export default function Home() {
               rings on the back for fastening covers and accessories. perhaps
               you want to stick your OP–1 field on top of your full size
               keyboard or slap it on a guitar? use the included adhesive looped
-              back and start experimenting. on the right you'll find an
+              back and start experimenting. on the right you&apos;ll find an
               additional passive loudspeaker for hugely improved bass. and for a
               ’no-more-cold-metal-on-your-lap’ experience, we enfolded the
               aluminum body in a warm, soft touch, hard cover.
