@@ -1,13 +1,21 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import { sf_pro } from "./ui/fonts";
 
 export const metadata: Metadata = {
-  title: "OP-1 — teenage engineering",
-  description: "",
+  title: {
+    default: "OP-1 — teenage engineering",
+    template: "%s — teenage engineering",
+  },
+  description:
+    "High quality electronic products for people who love sound and music.",
+  openGraph: {
+    images: "https://teenage-engineering.vercel.app/opengraph-image.png",
+  },
   metadataBase: new URL("https://teenage-engineering.vercel.app/"),
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({
@@ -17,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={`${sf_pro.className} antialiased`}>{children}</body>
     </html>
   );
 }

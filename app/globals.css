@@ -1,5 +1,3 @@
-@import url("https://api.fontshare.com/v2/css?f[]=switzer@100,101,200,201,300,301,400,401,500,501,600,601,700,701,800,801,900,901,1,2&display=swap");
-
 @media (min-width: 1px) {
   ::-webkit-scrollbar {
     display: none;
@@ -11,7 +9,7 @@
     width: 100%;
     min-height: 100vh;
     position: relative;
-    background: rgb(208, 209, 210);
+    background: rgb(245 245 245);
   }
 
   * {
@@ -19,12 +17,12 @@
     margin: 0px;
     box-sizing: border-box;
     z-index: 2;
-    font-family: 'Switzer', sans-serif;
     color: #070707;
+    text-wrap: balance;
   }
 
   .background-holder {
-    position: fixed;
+    position: absolute;
     min-height: 100vh;
     width: 100%;
   }
@@ -36,38 +34,31 @@
   }
 
   h1 {
+    font-size: clamp(59.3px, 4vw, 95.95px);
     font-weight: 200;
-    line-height: 1;
-    font-size: clamp(64px, 20vw, 320px);
   }
 
-  h2 {
-    font-weight: 300;
-    line-height: 1;
-    font-size: clamp(24px, 10vw, 80px);
+  ul {
+    list-style-type: none;
   }
 
   p,
   li {
-    font-size: clamp(20px, 2vw, 24px);
-    font-weight: 300;
+    font-size: clamp(12px, 2vw, 14px);
+    text-align: justify;
+    font-weight: 400;
     line-height: 1.4;
-  }
-
-  li {
-    margin-left: 2rem;
   }
 
   span {
     font-weight: 300;
-    font-size: clamp(20px, 2vw, 24px);
-    line-height: 1.6;
+    font-size: 16.18px;
   }
 
   a,
   button {
     line-height: 1.4;
-    font-size: clamp(20px, 2vw, 24px);
+    font-size: 16.18px;
     font-weight: 300;
     text-decoration: none;
     width: fit-content;
@@ -82,25 +73,18 @@
 
   nav {
     padding-block: 1rem;
-    position: absolute;
+    position: fixed;
     top: 0rem;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    /* backdrop-filter: blur(20px); */
     z-index: 3;
-
-    span {
-      color: #070707;
-    }
-
-    a {
-      color: #070707;
-    }
   }
 
   .nav {
-    width: 90%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -108,9 +92,9 @@
 
   .nav-links {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   #links {
@@ -123,38 +107,27 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #070707;
 
-    p {
-      color: #070707;
-    }
-
-    a {
-      color: #070707;
+    p,
+    a,
+    span,
+    button {
+      color: white;
     }
   }
 
-  .cart-btn {
-    padding: 2rem;
-    background: white;
-    color: #070707;
-    font-weight: 400;
-    font-size: clamp(24px, 2vw, 28px);
-    width: 400px;
-    text-align: center;
-  }
-
-  .splash,
-  .splash-bottom {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+  .splash {
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    height: 60vh;
+    object-fit: contain;
     object-position: center center;
     z-index: 1;
   }
 
   .description {
     text-align: center;
-    margin-bottom: 0rem;
   }
 
   .splash-id-holder {
@@ -201,11 +174,13 @@
 }
 
 @media (min-width: 799px) {
-  nav {
-    padding-block: 2rem;
+  .nav {
+    width: 90%;
+    justify-content: space-between;
   }
 
-  .nav {
+  .nav-links {
+    gap: 2rem;
     justify-content: space-between;
   }
 
@@ -217,15 +192,11 @@
     width: 70%;
   }
 
-  .splash-bottom {
+  .splash {
     width: 60%;
   }
 
   .splash-id-holder {
     bottom: 24rem;
-  }
-
-  .description {
-    margin-bottom: 6rem;
   }
 }
